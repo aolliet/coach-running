@@ -45,7 +45,7 @@ export const TrainingForm: React.FC<TrainingFormProps> = ({ onSubmit }) => {
     const dayCountMismatch = formData.trainingDays.length > 0 && formData.trainingDays.length !== formData.sessionsPerWeek;
 
     return (
-        <div className="max-w-2xl mx-auto p-6">
+        <div className="max-w-2xl mx-auto p-6 pb-24">
             <div className="mb-8 text-center">
                 <h2 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white">
                     Bienvenue ! 👋
