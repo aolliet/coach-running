@@ -672,4 +672,8 @@ input[type="range"]::-webkit-slider-thumb {
   padding-bottom: 8rem;
 }
 
+.pb-48 {
+  padding-bottom: 12rem;
+}
+
 /* Extra padding for content to clear floating button */
