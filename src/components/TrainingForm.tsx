@@ -137,9 +137,9 @@ export const TrainingForm: React.FC<TrainingFormProps> = ({ onSubmit }) => {
                                 key={day}
                                 type="button"
                                 onClick={() => handleDayToggle(day)}
-                                className={`p-3 rounded-lg font-medium transition-all ${formData.trainingDays.includes(day)
-                                    ? 'bg-blue-600 text-white shadow-md scale-105'
-                                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                                className={`p-3 rounded-lg font-bold transition-all ${formData.trainingDays.includes(day)
+                                    ? 'bg-blue-700 dark:bg-blue-600 text-white shadow-xl scale-105 border-2 border-blue-900 dark:border-blue-300'
+                                    : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 border-2 border-gray-300 dark:border-gray-600'
                                     }`}
                             >
                                 {day}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Layout } from './components/Layout';
 import { TrainingForm } from './components/TrainingForm';
 import { PlanView } from './components/PlanView';
@@ -9,6 +9,11 @@ import { Calendar, Target } from 'lucide-react';
 function App() {
   const { activeTab, plan, currentGoal, setActiveTab, setPlan, setCurrentGoal } = useStore();
   const [isGenerating, setIsGenerating] = useState(false);
+
+  // Always start on the form tab
+  useEffect(() => {
+    setActiveTab('form');
+  }, []);
 
   const handleFormSubmit = async (formData: any) => {
     setActiveTab('plan');
