@@ -8,6 +8,7 @@ interface UserGoal {
     weeks: number;
     sessionsPerWeek: number;
     trainingDays: string[];
+    level: string;
 }
 
 export const generatePlanWithAI = async (goal: UserGoal): Promise<Week[]> => {
@@ -18,9 +19,21 @@ export const generatePlanWithAI = async (goal: UserGoal): Promise<Week[]> => {
         return generateMockPlan();
     }
 
-    const prompt = `Tu es coach de course à pied. Je souhaite établir un record sur un ${goal.distance}${goal.targetTime ? ` en ${goal.targetTime}` : ''}. Je souhaite que mon plan d'entrainement se déroule sur ${goal.weeks} semaines, ${goal.sessionsPerWeek} fois par semaine, idéalement sur les jours ${goal.trainingDays.join(', ')}.
+    const prompt = `Tu es un coach de course à pied expert.
+Profil du coureur :
+- Niveau : ${goal.level}
+- Objectif : ${goal.distance}
+${goal.targetTime ? `- Temps visé : ${goal.targetTime}` : ''}
+- Disponibilités : ${goal.sessionsPerWeek} séances par semaine, les ${goal.trainingDays.join(', ')}.
+- Durée du plan : ${goal.weeks} semaines.
 
-IMPORTANT : Réponds UNIQUEMENT avec un JSON valide (pas de markdown, pas de texte avant ou après) suivant cette structure EXACTE :
+RÈGLES STRICTES :
+1. ANALYSE DE COHÉRENCE : Vérifie d'abord si l'objectif est réaliste pour le niveau déclaré.
+   - Exemple irréaliste : Débutant visant un Marathon en 2h30.
+   - Exemple irréaliste : 5km en 3h (trop lent).
+   - Si l'objectif est irréaliste ou dangereux, génère un JSON avec une seule semaine et une seule séance dont la description est : "ERREUR : [Explication du problème et conseil pour une saisie réaliste]".
+
+2. FORMAT DE RÉPONSE : Réponds UNIQUEMENT avec un JSON valide (pas de markdown, pas de texte avant ou après) suivant cette structure EXACTE :
 {
   "weeks": [
     {
@@ -29,7 +42,7 @@ IMPORTANT : Réponds UNIQUEMENT avec un JSON valide (pas de markdown, pas de tex
         {
           "day": "Lundi",
           "type": "Repos",
-          "description": "Repos complet ou étirements légers",
+          "description": "Repos complet",
           "completed": false
         },
         {
@@ -43,7 +56,10 @@ IMPORTANT : Réponds UNIQUEMENT avec un JSON valide (pas de markdown, pas de tex
   ]
 }
 
-Génère un plan de ${goal.weeks} semaines adapté à l'objectif. Chaque semaine doit avoir exactement ${goal.sessionsPerWeek} séances sur les jours spécifiés.`;
+3. CONTENU DU PLAN :
+   - Si l'objectif est réaliste, construis un plan progressif sur ${goal.weeks} semaines.
+   - Respecte scrupuleusement les jours d'entraînement : ${goal.trainingDays.join(', ')}.
+   - Intègre le temps visé (${goal.targetTime || 'finir la course'}) dans les allures des séances spécifiques.`;
 
     console.log('Attempting to generate plan with Gemini...');
     console.log('API Key present:', !!apiKey);

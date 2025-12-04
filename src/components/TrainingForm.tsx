@@ -7,6 +7,7 @@ interface TrainingFormData {
     weeks: number;
     sessionsPerWeek: number;
     trainingDays: string[];
+    level: string;
 }
 
 interface TrainingFormProps {
@@ -15,6 +16,13 @@ interface TrainingFormProps {
 
 const DAYS = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
 const DISTANCES = ['5km', '10km', 'Semi-marathon', 'Marathon', 'Autre'];
+const LEVELS = [
+    'Débutant (reprise ou 1ère fois)',
+    'Occasionnel (1-2 sorties/sem)',
+    'Régulier (2-3 sorties/sem)',
+    'Confirmé (3-4 sorties/sem + compétitions)',
+    'Expert (5+ sorties/sem)'
+];
 
 export const TrainingForm: React.FC<TrainingFormProps> = ({ onSubmit }) => {
     const [formData, setFormData] = useState<TrainingFormData>({
@@ -22,7 +30,8 @@ export const TrainingForm: React.FC<TrainingFormProps> = ({ onSubmit }) => {
         targetTime: '',
         weeks: 8,
         sessionsPerWeek: 3,
-        trainingDays: []
+        trainingDays: [],
+        level: ''
     });
 
     const handleDayToggle = (day: string) => {
@@ -36,12 +45,12 @@ export const TrainingForm: React.FC<TrainingFormProps> = ({ onSubmit }) => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (formData.distance && formData.trainingDays.length > 0) {
+        if (formData.distance && formData.trainingDays.length > 0 && formData.level) {
             onSubmit(formData);
         }
     };
 
-    const isValid = formData.distance && formData.trainingDays.length === formData.sessionsPerWeek;
+    const isValid = formData.distance && formData.trainingDays.length === formData.sessionsPerWeek && formData.level;
     const dayCountMismatch = formData.trainingDays.length > 0 && formData.trainingDays.length !== formData.sessionsPerWeek;
 
     return (
@@ -56,6 +65,24 @@ export const TrainingForm: React.FC<TrainingFormProps> = ({ onSubmit }) => {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Niveau */}
+                <div>
+                    <label className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
+                        Niveau *
+                    </label>
+                    <select
+                        value={formData.level}
+                        onChange={(e) => setFormData({ ...formData, level: e.target.value })}
+                        className="w-full p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required
+                    >
+                        <option value="">Sélectionnez votre niveau</option>
+                        {LEVELS.map(l => (
+                            <option key={l} value={l}>{l}</option>
+                        ))}
+                    </select>
+                </div>
+
                 {/* Distance */}
                 <div>
                     <label className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">

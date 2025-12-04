@@ -27,7 +27,8 @@ function App() {
         targetTime: formData.targetTime,
         weeks: formData.weeks,
         sessionsPerWeek: formData.sessionsPerWeek,
-        trainingDays: formData.trainingDays
+        trainingDays: formData.trainingDays,
+        level: formData.level
       });
 
       setPlan(newPlan);
