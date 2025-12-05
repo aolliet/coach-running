@@ -4,6 +4,7 @@ import { Week } from '../components/PlanView';
 
 export interface UserGoal {
     distance: string;
+    customDistance?: string;
     targetTime?: string;
     weeks: number;
     sessionsPerWeek: number;

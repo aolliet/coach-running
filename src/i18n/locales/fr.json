@@ -1,0 +1,87 @@
+{
+    "common": {
+        "loading": "Chargement...",
+        "error": "Erreur",
+        "copy": "Copier le plan",
+        "copied": "Copié !",
+        "week": "Semaine",
+        "sessions": "séances",
+        "session": "séance"
+    },
+    "form": {
+        "welcome": "Bienvenue ! 👋",
+        "sessions": "{{count}} séances",
+        "intro": "Je suis votre coach de running. Détaillez votre objectif en remplissant les champs suivants :",
+        "level": "Niveau",
+        "tooltips": {
+            "level": "Détermine l'intensité et la complexité des séances proposées.",
+            "distance": "La distance que vous préparez. Choisissez 'Autre' pour un objectif personnalisé.",
+            "time": "Votre objectif chronométrique (ex: passage sous les 4h au marathon).",
+            "sessions": "Plus de séances = progression plus rapide, mais demande plus de disponibilité."
+        },
+        "selectLevel": "Sélectionnez votre niveau",
+        "distance": "Distance cible *",
+        "selectDistance": "Sélectionnez une distance",
+        "otherDistancePlaceholder": "Précisez (ex: 50km, Trail 80km 2000d+...)",
+        "targetTime": "Temps cible (optionnel)",
+        "targetTimePlaceholder": "Ex: 1h45min, 45min, 3h30...",
+        "weeks": "Nombre de semaines : {{count}}",
+        "weeksMin": "4 sem",
+        "weeksMax": "16 sem",
+        "sessionsPerWeek": "Séances par semaine : {{count}}",
+        "sessionsMin": "2/sem",
+        "sessionsMax": "6/sem",
+        "trainingDays": "Jours d'entraînement * (sélectionnez {{count}})",
+        "dayMismatch": "⚠️ Vous avez sélectionné {{days}} jour{{plural}}, mais {{sessions}} séance{{plural}} par semaine.",
+        "submit": "Générer mon plan",
+        "fillRequired": "Remplissez les champs *",
+        "generating": "Génération de votre plan en cours...",
+        "generatingSub": "Cela peut prendre quelques secondes",
+        "noPlan": "Aucun plan généré pour le moment.",
+        "createPlan": "Créer un plan"
+    },
+    "levels": {
+        "BEGINNER": "Débutant (reprise ou 1ère fois)",
+        "OCCASIONAL": "Occasionnel (1-2 sorties/sem)",
+        "REGULAR": "Régulier (2-3 sorties/sem)",
+        "CONFIRMED": "Confirmé (3-4 sorties/sem + compétitions)",
+        "EXPERT": "Expert (5+ sorties/sem)"
+    },
+    "distances": {
+        "5KM": "5km",
+        "10KM": "10km",
+        "HALF_MARATHON": "Semi-marathon",
+        "MARATHON": "Marathon",
+        "OTHER": "Autre"
+    },
+    "days": {
+        "MONDAY": "Lundi",
+        "TUESDAY": "Mardi",
+        "WEDNESDAY": "Mercredi",
+        "THURSDAY": "Jeudi",
+        "FRIDAY": "Vendredi",
+        "SATURDAY": "Samedi",
+        "SUNDAY": "Dimanche"
+    },
+    "plan": {
+        "title": "Votre Plan d'Entraînement",
+        "goalSummary": "Objectif",
+        "exportTitle": "Plan d'Entraînement",
+        "exportCsv": "Exporter CSV",
+        "startDate": "Date de début du plan",
+        "selectStartDate": "Sélectionnez la date de début",
+        "cancel": "Annuler",
+        "export": "Exporter",
+        "csvWeek": "Semaine",
+        "csvDay": "Jour",
+        "csvType": "Type Séance",
+        "csvPace": "Allure cible",
+        "csvRecovery": "Récupération",
+        "csvDuration": "Durée estimée",
+        "csvDetails": "Détail Séance"
+    },
+    "nav": {
+        "goal": "Objectif",
+        "plan": "Plan"
+    }
+}
