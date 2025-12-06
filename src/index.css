@@ -142,6 +142,26 @@ body {
   padding-bottom: 0.75rem;
 }
 
+.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.py-12 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
 .pb-16 {
   padding-bottom: 4rem;
 }
@@ -164,6 +184,10 @@ body {
 
 .mt-4 {
   margin-top: 1rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
 }
 
 .bg-white {
@@ -573,6 +597,19 @@ body {
   --tw-gradient-to: #2563eb;
 }
 
+.active\:from-blue-900:active {
+  --tw-gradient-from: #1e3a8a;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(30, 58, 138, 0));
+}
+
+.active\:to-blue-800:active {
+  --tw-gradient-to: #1e40af;
+}
+
+.active\:scale-95:active {
+  transform: scale(0.95);
+}
+
 .bg-clip-text {
   -webkit-background-clip: text;
   background-clip: text;
@@ -662,8 +699,8 @@ input[type="range"]::-webkit-slider-thumb {
   /* Above the nav bar */
   left: 50%;
   transform: translateX(-50%);
-  width: 90%;
-  max-width: 40rem;
+  width: 85%;
+  max-width: 50rem;
   z-index: 30;
   box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
 }

@@ -35,9 +35,9 @@ const Tooltip: React.FC<{ text: string }> = ({ text }) => {
                 className={`transition-colors cursor-help ${isVisible ? 'text-blue-500' : 'text-gray-400 hover:text-blue-500'}`}
             />
             {isVisible && (
-                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-gray-900 text-white text-xs rounded-lg shadow-xl z-[100] animate-fadeIn">
-                    <span className="block whitespace-normal leading-relaxed text-center">{text}</span>
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-900" />
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 p-3 rounded-lg shadow-2xl z-[100] animate-fadeIn bg-white dark:bg-gray-900 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700">
+                    <span className="block text-center text-sm">{text}</span>
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-white dark:border-t-gray-900" />
                 </div>
             )}
         </div>
@@ -77,27 +77,27 @@ export const TrainingForm: React.FC<TrainingFormProps> = ({ onSubmit }) => {
     const dayCountMismatch = formData.trainingDays.length > 0 && formData.trainingDays.length !== formData.sessionsPerWeek;
 
     return (
-        <div className="max-w-2xl mx-auto p-6 pb-40">
-            <div className="mb-8 text-center">
+        <div className="w-full max-w-4xl mx-auto pb-44 px-4 sm:px-6">
+            <div className="text-center mb-8 pt-4">
                 <h2 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white">
                     {t('form.welcome')}
                 </h2>
-                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl mx-auto">
                     {t('form.intro')}
                 </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="">
                 {/* Niveau */}
-                <div>
-                    <label className="flex items-center text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
-                        {t('form.level')}
+                <div className="bg-white dark:bg-gray-900 p-5 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800">
+                    <label className="flex items-center text-lg font-semibold mb-3 text-gray-800 dark:text-white">
+                        {t('form.level')} *
                         <Tooltip text={t('form.tooltips.level')} />
                     </label>
                     <select
                         value={formData.level}
                         onChange={(e) => setFormData({ ...formData, level: e.target.value })}
-                        className="w-full p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full p-3 rounded-lg bg-gray-50 dark:bg-gray-800 border-2 border-transparent focus:border-blue-500 focus:bg-white dark:focus:bg-gray-900 text-gray-900 dark:text-white transition-all outline-none text-base cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
                         required
                     >
                         <option value="">{t('form.selectLevel')}</option>
@@ -107,106 +107,108 @@ export const TrainingForm: React.FC<TrainingFormProps> = ({ onSubmit }) => {
                     </select>
                 </div>
 
-                {/* Distance */}
-                <div>
-                    <label className="flex items-center text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
-                        {t('form.distance')}
-                        <Tooltip text={t('form.tooltips.distance')} />
-                    </label>
-                    <div className="space-y-3">
-                        <select
-                            value={formData.distance}
-                            onChange={(e) => setFormData({ ...formData, distance: e.target.value })}
-                            className="w-full p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            required
-                        >
-                            <option value="">{t('form.selectDistance')}</option>
-                            {DISTANCES.map(d => (
-                                <option key={d} value={d}>{t(`distances.${d}`)}</option>
-                            ))}
-                        </select>
-
-                        {formData.distance === 'OTHER' && (
-                            <input
-                                type="text"
-                                value={formData.customDistance}
-                                onChange={(e) => setFormData({ ...formData, customDistance: e.target.value })}
-                                placeholder={t('form.otherDistancePlaceholder')}
-                                className="w-full p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 animate-fadeIn"
+                {/* Distance et Temps */}
+                <div className="grid md:grid-cols-2 gap-6 mt-8">
+                    <div className="bg-white dark:bg-gray-900 p-5 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800">
+                        <label className="flex items-center text-lg font-semibold mb-3 text-gray-800 dark:text-white">
+                            {t('form.distance')}
+                            <Tooltip text={t('form.tooltips.distance')} />
+                        </label>
+                        <div className="space-y-3">
+                            <select
+                                value={formData.distance}
+                                onChange={(e) => setFormData({ ...formData, distance: e.target.value })}
+                                className="w-full p-3 rounded-lg bg-gray-50 dark:bg-gray-800 border-2 border-transparent focus:border-blue-500 focus:bg-white dark:focus:bg-gray-900 text-gray-900 dark:text-white transition-all outline-none text-base cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
                                 required
-                            />
-                        )}
+                            >
+                                <option value="">{t('form.selectDistance')}</option>
+                                {DISTANCES.map(d => (
+                                    <option key={d} value={d}>{t(`distances.${d}`)}</option>
+                                ))}
+                            </select>
+
+                            {formData.distance === 'OTHER' && (
+                                <input
+                                    type="text"
+                                    value={formData.customDistance}
+                                    onChange={(e) => setFormData({ ...formData, customDistance: e.target.value })}
+                                    placeholder={t('form.otherDistancePlaceholder')}
+                                    className="w-full p-3 rounded-lg bg-gray-50 dark:bg-gray-800 border-2 border-transparent focus:border-blue-500 focus:bg-white dark:focus:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-400 transition-all outline-none text-base animate-fadeIn"
+                                    required
+                                />
+                            )}
+                        </div>
+                    </div>
+
+                    <div className="bg-white dark:bg-gray-900 p-5 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800">
+                        <label className="flex items-center text-lg font-semibold mb-3 text-gray-800 dark:text-white">
+                            {t('form.targetTime')}
+                            <Tooltip text={t('form.tooltips.time')} />
+                        </label>
+                        <input
+                            type="text"
+                            value={formData.targetTime}
+                            onChange={(e) => setFormData({ ...formData, targetTime: e.target.value })}
+                            placeholder={t('form.targetTimePlaceholder')}
+                            className="w-full p-3 rounded-lg bg-gray-50 dark:bg-gray-800 border-2 border-transparent focus:border-blue-500 focus:bg-white dark:focus:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-400 transition-all outline-none text-base"
+                        />
                     </div>
                 </div>
 
-                {/* Temps cible */}
-                <div>
-                    <label className="flex items-center text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
-                        {t('form.targetTime')}
-                        <Tooltip text={t('form.tooltips.time')} />
-                    </label>
-                    <input
-                        type="text"
-                        value={formData.targetTime}
-                        onChange={(e) => setFormData({ ...formData, targetTime: e.target.value })}
-                        placeholder={t('form.targetTimePlaceholder')}
-                        className="w-full p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                </div>
+                {/* Weeks and Sessions */}
+                <div className="grid md:grid-cols-2 gap-6 mt-8">
+                    <div className="bg-white dark:bg-gray-900 p-5 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800">
+                        <label className="block text-lg font-semibold mb-3 text-gray-800 dark:text-white">
+                            {t('form.weeks', { count: formData.weeks })}
+                        </label>
+                        <input
+                            type="range"
+                            min="4"
+                            max="16"
+                            value={formData.weeks}
+                            onChange={(e) => setFormData({ ...formData, weeks: parseInt(e.target.value) })}
+                            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 accent-blue-600"
+                        />
+                        <div className="flex justify-between text-sm text-gray-500 dark:text-gray-400 mt-2 font-medium">
+                            <span>{t('form.weeksMin')}</span>
+                            <span>{t('form.weeksMax')}</span>
+                        </div>
+                    </div>
 
-                {/* Nombre de semaines */}
-                <div>
-                    <label className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
-                        {t('form.weeks', { count: formData.weeks })}
-                    </label>
-                    <input
-                        type="range"
-                        min="4"
-                        max="16"
-                        value={formData.weeks}
-                        onChange={(e) => setFormData({ ...formData, weeks: parseInt(e.target.value) })}
-                        className="w-full"
-                    />
-                    <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1">
-                        <span>{t('form.weeksMin')}</span>
-                        <span>{t('form.weeksMax')}</span>
+                    <div className="bg-white dark:bg-gray-900 p-5 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800">
+                        <label className="flex items-center text-lg font-semibold mb-3 text-gray-800 dark:text-white">
+                            {t('form.sessionsPerWeek', { count: formData.sessionsPerWeek })}
+                            <Tooltip text={t('form.tooltips.sessions')} />
+                        </label>
+                        <input
+                            type="range"
+                            min="2"
+                            max="7"
+                            value={formData.sessionsPerWeek}
+                            onChange={(e) => setFormData({ ...formData, sessionsPerWeek: parseInt(e.target.value) })}
+                            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 accent-blue-600"
+                        />
+                        <div className="flex justify-between text-sm text-gray-500 dark:text-gray-400 mt-2 font-medium">
+                            <span>{t('form.sessionsMin')}</span>
+                            <span>{t('form.sessionsMax')}</span>
+                        </div>
                     </div>
                 </div>
 
-                {/* Séances par semaine */}
-                <div>
-                    <label className="flex items-center text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
-                        {t('form.sessionsPerWeek', { count: formData.sessionsPerWeek })}
-                        <Tooltip text={t('form.tooltips.sessions')} />
-                    </label>
-                    <input
-                        type="range"
-                        min="2"
-                        max="7"
-                        value={formData.sessionsPerWeek}
-                        onChange={(e) => setFormData({ ...formData, sessionsPerWeek: parseInt(e.target.value) })}
-                        className="w-full"
-                    />
-                    <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1">
-                        <span>{t('form.sessionsMin')}</span>
-                        <span>{t('form.sessionsMax')}</span>
-                    </div>
-                </div>
-
-                {/* Jours d'entraînement */}
-                <div>
-                    <label className="block text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300">
+                {/* Training Days */}
+                <div className="bg-white dark:bg-gray-900 p-5 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 mt-8">
+                    <label className="block text-lg font-semibold mb-6 text-gray-800 dark:text-white">
                         {t('form.trainingDays', { count: formData.sessionsPerWeek })}
                     </label>
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
                         {DAYS.map(day => (
                             <button
                                 key={day}
                                 type="button"
                                 onClick={() => handleDayToggle(day)}
-                                className={`p-3 rounded-lg font-bold transition-all ${formData.trainingDays.includes(day)
-                                    ? 'bg-blue-700 dark:bg-blue-600 text-white shadow-xl scale-105 border-2 border-blue-900 dark:border-blue-300'
-                                    : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 border-2 border-gray-300 dark:border-gray-600'
+                                className={`p-3 rounded-lg font-bold transition-all text-sm border-2 shadow-sm ${formData.trainingDays.includes(day)
+                                    ? 'bg-blue-700 dark:bg-blue-600 text-white border-blue-900 dark:border-blue-300 shadow-md transform scale-105'
+                                    : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-500 hover:bg-gray-50 dark:hover:bg-gray-700'
                                     }`}
                             >
                                 {t(`days.${day}`)}
@@ -214,19 +216,20 @@ export const TrainingForm: React.FC<TrainingFormProps> = ({ onSubmit }) => {
                         ))}
                     </div>
                     {dayCountMismatch && (
-                        <p className="mt-2 text-sm text-orange-600 dark:text-orange-400">
+                        <p className="mt-4 text-sm text-orange-600 dark:text-orange-400 flex items-center gap-2 bg-orange-50 dark:bg-orange-900/20 p-3 rounded-lg border border-orange-100 dark:border-orange-900/30">
+                            <Info size={18} className="shrink-0" />
                             {t('form.dayMismatch', { days: formData.trainingDays.length, sessions: formData.sessionsPerWeek, plural: formData.trainingDays.length > 1 ? 's' : '' })}
                         </p>
                     )}
                 </div>
 
-                {/* Submit - Floating Button */}
-                <div className="pb-32"> {/* Spacer to ensure content isn't hidden behind button */}
+                {/* Submit */}
+                <div className="pb-48 flex justify-center w-full px-4">
                     <button
                         type="submit"
                         disabled={!isValid}
-                        className={`btn-floating p-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 transition-all transform ${isValid
-                            ? 'bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white hover:scale-105'
+                        className={`btn-floating py-5 px-6 w-[95%] md:w-[800px] max-w-5xl rounded-full font-bold text-xl flex items-center justify-center gap-3 transition-all transform shadow-2xl ${isValid
+                            ? 'bg-blue-700 hover:bg-blue-800 text-white hover:scale-[1.02]'
                             : 'bg-gray-200 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed'
                             }`}
                     >

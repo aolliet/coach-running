@@ -23,6 +23,7 @@
         "selectDistance": "Select a distance",
         "targetTime": "Target Time (optional)",
         "targetTimePlaceholder": "Ex: 1h45min, 45min, 3h30...",
+        "otherDistancePlaceholder": "Ex: 15km, 30km, 100km...",
         "weeks": "Number of weeks: {{count}}",
         "weeksMin": "4 wks",
         "weeksMax": "16 wks",
