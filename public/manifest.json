@@ -43,14 +43,14 @@
     "screenshots": [
         {
             "src": "/screenshot-form.png",
-            "sizes": "1080x1920",
+            "sizes": "482x962",
             "type": "image/png",
             "form_factor": "narrow",
             "label": "Formulaire de création de plan d'entraînement"
         },
         {
             "src": "/screenshot-plan.png",
-            "sizes": "1080x1920",
+            "sizes": "491x960",
             "type": "image/png",
             "form_factor": "narrow",
             "label": "Affichage du plan d'entraînement personnalisé"
