@@ -1,0 +1,10 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "app.vercel.coach_running.twa",
+    "sha256_cert_fingerprints": [
+      "01:9C:16:1D:20:CF:48:6D:71:B6:8A:9B:A9:65:1A:62:59:CA:44:4C:09:66:75:45:42:2C:02:2F:7D:07:46:42"
+    ]
+  }
+}]
