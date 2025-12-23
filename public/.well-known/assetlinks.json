@@ -1,10 +1,14 @@
-[{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target": {
-    "namespace": "android_app",
-    "package_name": "app.vercel.coach_running.twa",
-    "sha256_cert_fingerprints": [
-      "01:9C:16:1D:20:CF:48:6D:71:B6:8A:9B:A9:65:1A:62:59:CA:44:4C:09:66:75:45:42:2C:02:2F:7D:07:46:42"
-    ]
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.vercel.coach_running.twa",
+      "sha256_cert_fingerprints": [
+        "EB:B2:69:C9:00:D1:0D:77:10:4B:EE:DA:08:02:03:A1:26:5B:30:51:7F:75:6A:67:ED:CE:B8:FA:6B:4A:89:AD"
+      ]
+    }
   }
-}]
+]
